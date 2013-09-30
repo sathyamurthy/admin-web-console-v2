@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
-from Core.Backend.PrivilegeManagement import site
-from Client.Ikea.Users.models import Market
+from Client.Ikea.IkeaCategories.models import IkeaMarkets as Market
+from Client.Ikea.Core import Web as IkeaWeb
 import sys
 admin.autodiscover()
 #site.cutomer_autodiscover();
@@ -43,7 +43,7 @@ urlpatterns += patterns('',
     
     url(r'^editor/', include(admin.site.urls)),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^home/', include(site.usersite.urls)),
+    url(r'^home/', include(IkeaWeb.ikeasite.urls)),
     #url(r'^api/', include(v1_api.urls)),
     #url(r'^gallery/upload/', include('Uploader.urls')),
 )
@@ -53,12 +53,12 @@ for market in Market.objects.filter(~Q(country__pk=1000)):
     pattern = r'^ikea/'+market.country.iso_code+'/'
     #print >> sys.stdout,pattern 
     urlpatterns += patterns(market.country.iso_code,
-        url(r'^ikea/%s/' % (market.country.iso_code),include(site.usersite.geturls(app_name=market.country.iso_code,name=market.country.iso_code)))
+        url(r'^ikea/%s/' % (market.country.iso_code),include(IkeaWeb.ikeasite.geturls(app_name=market.country.iso_code,name=market.country.iso_code)))
     )
 
 
 urlpatterns += patterns('ikea',
-    url(r'^ikea/',include(site.usersite.geturls(app_name='ikea',name='ikea')))
+    url(r'^ikea/',include(IkeaWeb.ikeasite.geturls(app_name='ikea',name='ikea')))
 )
 
 #print >> sys.stdout,admin.site.urls 

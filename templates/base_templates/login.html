@@ -80,8 +80,8 @@
 			    </div>
 			    <div class="controls">
 			    	<select id="country">
-			    	{% for country in countries %}
-			    	 <option value="/{{country.iso_code}}/">{{country.country_name}}</option>
+			    	{% for market in countries %}
+			    	 <option value="/ikea/{{market.country.iso_code}}/">{{market.country.country_name}}</option>
 			    	{% endfor%}
 			    	</select>
 			    	<script language="JavaScript">

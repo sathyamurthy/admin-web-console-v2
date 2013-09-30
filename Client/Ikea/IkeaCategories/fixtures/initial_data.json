@@ -1,0 +1,398 @@
+[
+    {
+        "pk": 1,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Australia (NSW, QLD, VIC)",
+            "country": 1,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Australia (SA, WA)",
+            "country": 2,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "China",
+            "country": 3,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Hong Kong",
+            "country": 4,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Japan",
+            "country": 5,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Malaysia",
+            "country": 6,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Singapore",
+            "country": 7,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Thailand",
+            "country": 8,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Taiwan",
+            "country": 9,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "United Arab Emirates",
+            "country": 10,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Austria",
+            "country": 11,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Belgium",
+            "country": 12,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Bulgaria",
+            "country": 13,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Switzerland",
+            "country": 14,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Cyprus",
+            "country": 15,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Czech Republic",
+            "country": 16,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Germany",
+            "country": 17,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Denmark",
+            "country": 18,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Dominican Republic",
+            "country": 19,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Spain",
+            "country": 20,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Finland",
+            "country": 21,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "France",
+            "country": 22,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "United Kingdom",
+            "country": 23,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Greece",
+            "country": 24,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Hungary",
+            "country": 25,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Ireland",
+            "country": 26,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Israel",
+            "country": 27,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Iceland",
+            "country": 28,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Italy",
+            "country": 29,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Netherlands",
+            "country": 30,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 31,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Norway",
+            "country": 31,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 32,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Poland",
+            "country": 32,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 33,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Portugal",
+            "country": 33,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 34,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Qatar",
+            "country": 34,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 35,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Romania",
+            "country": 35,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 36,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Russia",
+            "country": 36,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 37,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Saudi Arabia",
+            "country": 37,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Sweden",
+            "country": 38,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 39,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Spanish Islands - Canary Islands",
+            "country": 39,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 40,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Spanish Islands - Balearic Islands",
+            "country": 40,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 41,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Slovakia",
+            "country": 41,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 42,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Turkey",
+            "country": 42,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 43,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "Canada",
+            "country": 43,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    },
+    {
+        "pk": 44,
+        "model": "IkeaCategories.IkeaMarkets",
+        "fields": {
+            "name": "USA",
+            "country": 44,
+            "market_settings": "{\"setting\":\"\"}"
+        }
+    }
+]

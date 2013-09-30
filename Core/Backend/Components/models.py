@@ -113,7 +113,7 @@ class UserPrivileges(models.Model):
     def __unicode__(self):
         return self.privilege_name
 
-class ModuleToClient(models.Model):
+class ModulesToClient(models.Model):
     client =  models.ForeignKey(ClientInformation,blank=False)
     modules = models.ManyToManyField(UserPrivileges, blank=True)
     def get_full_name(self):

@@ -17,11 +17,12 @@ from Core.UserManagement import get_user
 from Core.UserManagement import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout
 #from django.contrib.auth.decorators import login_required
 from Core.UserManagement.decorators import login_required
-from Core.UserManagement.forms import UpdateUserInformation as update_form,AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
+from Core.UserManagement.forms import  SetPasswordForm, PasswordChangeForm
+from Client.Ikea.Users.forms import AuthenticationForm,PasswordResetForm
 from Core.UserManagement.models import GlobalUserModel as User
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.models import get_current_site
-
+from Client.Ikea.Users.forms import UpdateUserInformation as update_form
 
 @sensitive_post_parameters()
 @csrf_protect
@@ -163,10 +164,10 @@ def homepage(request):
     context ={}
     #from Core.Countries.models import WorldCountries
     from django.db.models import Q
-    from Client.Ikea.Users.models import Market
+    from Client.Ikea.IkeaCategories.models import IkeaMarkets as Market
     context['countries'] = Market.objects.filter(~Q(country__pk=1000))
     #context['form']=AuthenticationForm
-    return TemplateResponse(request, 'base_templates/ikea/home_page.html', context,)
+    return TemplateResponse(request, 'client/ikea/home_page.html', context,)
 
 
 def logout(request, next_page=None,
@@ -230,142 +231,3 @@ def redirect_to_login(next, login_url=None,
 #   prompts for a new password
 # - password_reset_complete shows a success message for the above
 
-@csrf_protect
-def password_reset(request, is_admin_site=False,
-                   template_name='base_templates/registration/password_reset_form.html',
-                   email_template_name='base_templates/registration/password_reset_email.html',
-                   subject_template_name='base_templates/registration/password_reset_subject.txt',
-                   password_reset_form=PasswordResetForm,
-                   token_generator=default_token_generator,
-                   post_reset_redirect=None,
-                   from_email=None,
-                   current_app=None,
-                   extra_context=None):
-
-
-    if post_reset_redirect is None:
-        post_reset_redirect = reverse('UserManagement.views.password_reset_done')
-    if request.method == "POST":
-        form = password_reset_form(request.POST)
-        if form.is_valid():
-            opts = {
-                'use_https': request.is_secure(),
-                'token_generator': token_generator,
-                'from_email': from_email,
-                'email_template_name': email_template_name,
-                'subject_template_name': subject_template_name,
-                'request': request,
-            }
-            if is_admin_site:
-                opts = dict(opts, domain_override=request.get_host())
-            form.save(**opts)
-            return HttpResponseRedirect(post_reset_redirect)
-    else:
-        form = password_reset_form()
-    context = {
-        'form': form,
-    }
-    if extra_context is not None:
-        context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)
-
-def password_reset_done(request,
-                        template_name='base_templates/registration/password_reset_done.html',
-                        current_app=None, extra_context=None):
-    context = {}
-    if extra_context is not None:
-        context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)
-
-# Doesn't need csrf_protect since no-one can guess the URL
-#@sensitive_post_parameters()
-#@never_cache
-def password_reset_confirm(request, uidb36=None, token=None,
-                           template_name='base_templates/registration/password_reset_confirm.html',
-                           token_generator=default_token_generator,
-                           set_password_form=SetPasswordForm,
-                           post_reset_redirect=None,
-                           current_app=None, extra_context=None):
-    """
-    View that checks the hash in a password reset link and presents a
-    form for entering a new password.
-    """
-    assert uidb36 is not None and token is not None # checked by URLconf
-    if post_reset_redirect is None:
-        post_reset_redirect = reverse('UserManagement.views.password_reset_complete')
-    try:
-        uid_int = base36_to_int(uidb36)
-        user = User.objects.get(id=uid_int)
-    except (ValueError, User.DoesNotExist):
-        user = None
-
-    if user is not None and token_generator.check_token(user, token):
-        validlink = True
-        if request.method == 'POST':
-            form = set_password_form(user, request.POST)
-            if form.is_valid():
-                form.save()
-                return HttpResponseRedirect(post_reset_redirect)
-        else:
-            form = set_password_form(None)
-    else:
-        validlink = False
-        form = None
-    context = {
-        'form': form,
-        'validlink': validlink,
-    }
-    if extra_context is not None:
-        context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)
-
-def password_reset_complete(request,
-                            template_name='base_templates/registration/password_reset_complete.html',
-                            current_app=None, extra_context=None):
-    context = {
-        'login_url': settings.LOGIN_URL
-    }
-    if extra_context is not None:
-        context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)
-
-#@sensitive_post_parameters()
-#@csrf_protect
-#@login_required
-def password_change(request,
-                    template_name='base_templates/registration/password_change_form.html',
-                    post_change_redirect=None,
-                    password_change_form=PasswordChangeForm,
-                    current_app=None, extra_context=None):
-    User = get_user(request)
-    
-    if post_change_redirect is None:
-        post_change_redirect = reverse('UserManagement.views.password_change_done')
-    if request.method == "POST":
-        form = password_change_form(user=User, data=request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(post_change_redirect)
-    else:
-        form = password_change_form(user=User)
-    context = {
-        'form': form,
-    }
-    if extra_context is not None:
-        context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)
-
-#@login_required
-def password_change_done(request,
-                         template_name='base_templates/registration/password_change_done.html',
-                         current_app=None, extra_context=None):
-    context = {}
-    if extra_context is not None:
-        context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)

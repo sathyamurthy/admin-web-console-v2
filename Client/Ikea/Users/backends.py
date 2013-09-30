@@ -1,6 +1,6 @@
-from Client.Ikea.Users.models import Ikea as User,IkeaAnonymous,Market
+from Client.Ikea.Users.models import Ikea as User,IkeaAnonymous
 from Core.Countries.models import WorldCountries
-
+from Client.Ikea.IkeaCategories.models import IkeaMarkets as Market
 import sys
 
 class ModelBackend(object):
@@ -44,12 +44,12 @@ class ModelBackend(object):
             return set()
 
         if not hasattr(user_obj, '_perm_cache'):
-            from Core.Backend.Components.models import ModuleToClient
+            from Core.Backend.Components.models import ModulesToClient
             try :
                 if user_obj.user_type.pk == 1:
-                    user_obj._perm_cache = set([u"%s.%s" % (p.module, p.action) for p in ModuleToClient.objects.filter(client__name='ikea')[0].modules.all()])
+                    user_obj._perm_cache = set([u"%s.%s" % (p.module, p.action) for p in ModulesToClient.objects.filter(client__name='ikea')[0].modules.all()])
                 else:
-                    user_obj._perm_cache = set([u"%s.%s" % (p.module, p.action) for p in ModuleToClient.objects.filter(client__name='ikea')[0].modules.all()])
+                    user_obj._perm_cache = set([u"%s.%s" % (p.module, p.action) for p in ModulesToClient.objects.filter(client__name='ikea')[0].modules.all()])
             except :
                 user_obj._perm_cache = set()
 

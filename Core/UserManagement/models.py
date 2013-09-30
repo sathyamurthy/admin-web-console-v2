@@ -109,6 +109,27 @@ def _user_has_module_perms(user, app_label):
                     return True
     return False
 
+
+class GlobalUserGroupsModel(models.Model):
+    modules = models.ManyToManyField(UserPrivileges, blank=True)
+    group_name = models.CharField( max_length=300)
+    owner = models.IntegerField(blank=False,default=0)
+    modified = models.DateTimeField(auto_now=True)
+    class Meta:
+        verbose_name = _('User group')
+        verbose_name_plural = _('User groups')
+        abstract = True
+    def get_full_name(self):
+        return self.group_name
+
+    def get_short_name(self):
+        return self.group_name
+
+    def __unicode__(self):
+        return self.group_name
+
+
+
 class GlobalUserModel(models.Model):
     """
     Users within the Django authentication system are represented by this
@@ -284,8 +305,15 @@ class GlobalUserModel(models.Model):
 
 class AnonymousUser(object):
     id = None
-    is_active = UserStatus.objects.get(name='Anonymous')
-    user_type = UserType.objects.get(name='Anonymous')
+    is_active = {
+        'allow_login': False,
+        'name' : 'Anonymous',
+    }
+    user_type = {
+        'name' : 'Anonymous',
+    }#is_active = UserStatus.objects.get(name='Anonymous')
+    #user_type = UserType.objects.get(name='Anonymous')
+
     _groups = EmptyManager()
     _user_permissions = EmptyManager()
 

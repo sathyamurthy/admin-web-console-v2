@@ -1,0 +1,14 @@
+[
+
+    {
+        "pk": 1, 
+        "model": "Clients.ClientInformation", 
+        "fields": {
+            "name": "ikea",
+            "country": 1000,
+            "url":"http://onlinecatalog.ikea.com",
+            "domain":"onlinecatalog.ikea.com",
+            "properties": "{\"settings\" : \"\" }"
+        }
+    }
+]    

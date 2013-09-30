@@ -1,0 +1,44 @@
+{% extends "client/ikea/base.html" %}
+
+{% load i18n %}{% load admin_static bootstrapped_goodies_tags %}{% load url from future %}
+
+{% block title %}Ikea catalog (assets) Administartion{% endblock %}
+
+{% block actionbar_content %}
+		<div id="action-bar" class="container-fluid">
+			<div class="row-fluid">
+				<div class="span6">
+					
+						{% if modules.action == "create" %}
+						<h2> New image gallery <small> Assets / New image gallery </small> </h2>
+						{% else %}
+						<h1>Assets</h1>
+						{% endif %}
+					
+				</div>
+				<div class="span4 offset2 visible-desktop">
+					<ul class="pull-right  action-nav">
+						{% if modules.extended_create %}
+							<li class="btn-green">
+								<a href="{{modules.extended_create.opt.0 }}"><i class="icon-white icon-plus"></i> Create </a>
+							</li>
+						{% endif %}
+						{% if modules.extended_create %}
+							<li class="btn-green">
+								<a href="{{modules.extended_create.opt.0 }}"><i class="icon-white icon-plus"></i> Upload </a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block left_content %}
+	{% render_with_template_if_exist "client/ikea/extended/left_content.html" "" %}
+{% endblock %}
+{% block search_box %}
+	<form class="navbar-form pull-left">
+		<input type="text" placeholder="Search users"/>
+	</form>
+{% endblock %}
+{% block nav-global %}{% endblock %}

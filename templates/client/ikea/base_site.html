@@ -1,0 +1,25 @@
+{% extends "client/ikea/base.html" %}
+{% load i18n %}{% load admin_static bootstrapped_goodies_tags %}{% load url from future %}
+
+{% block title %}Ikea catalog Administartion{% endblock %}
+
+{% block actionbar_content %}
+		<div id="action-bar" class="container-fluid">
+			<div class="row-fluid">
+				<div class="span6">
+					<h1>Welcome {% filter force_escape %}{% firstof profile.user.first_name profile.user.username %}{% endfilter %}!!!</h1>
+				</div>
+				<div class="span4 offset2 visible-desktop">
+					<ul class="pull-right  action-nav">
+					</ul>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% block search_box %}
+	<form class="navbar-form pull-left">
+		<input type="text" placeholder="Search catalog information"/>
+	</form>
+{% endblock %}
+{% block nav-global %}{% endblock %}

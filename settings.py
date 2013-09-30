@@ -60,7 +60,7 @@ LOGGING_DB = { 'db_name':'logging','components':  ['Loggers']}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'admin_web_console',                      # Or path to database file if using sqlite3.
+        'NAME': 'admin_web_console_v1',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
         'PASSWORD': 'admin123!',
@@ -214,6 +214,7 @@ INSTALLED_APPS = (
     'Core.Backend.Components',
     'Core.UserManagement',
     'Client.Ikea.Users',
+    'Client.Ikea.IkeaCategories',
     'Client.Sandvik.Users',
 )
 AUTH_BACKEND_CLIENT = {

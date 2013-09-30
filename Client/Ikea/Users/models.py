@@ -5,35 +5,24 @@ from django.contrib.auth.hashers import (
     check_password, make_password, is_password_usable, UNUSABLE_PASSWORD)
 
 from jsonfield import JSONField
-from Core.UserManagement.models import GlobalUserModel as User,UserStatus,AnonymousUser as Anonymous,_user_get_all_permissions
-from Core.Countries.models import WorldCountries
+from Core.UserManagement.models import GlobalUserModel as User,UserStatus,AnonymousUser as Anonymous,_user_get_all_permissions,_user_has_module_perms,GlobalUserGroupsModel
+
+from Client.Ikea.IkeaCategories.models import Categories,IkeaMarkets
 import sys
 
 class SiteProfileNotAvailable(Exception):
     pass
 
-class Market(models.Model):
-    name = models.CharField(max_length=120)
-    country = models.ForeignKey(WorldCountries,blank=False)
-    market_settings = JSONField(default=None)
+class IkeaGroups(GlobalUserGroupsModel):
+    # Make the categories to market specific based on user login
+    available_categories = models.ManyToManyField(Categories, blank=True)
     class Meta:
-        verbose_name = _('Market')
-        verbose_name_plural = _('Markets ')
-        unique_together = (('name', 'country'),)
-
-    def get_full_name(self):
-        # The user is identified by their email address
-        return self.name
-
-    def get_short_name(self):
-        # The user is identified by their email address
-        return self.name
-
-    def __unicode__(self):
-        return self.name
-
+        verbose_name = _('Ikea User group')
+        verbose_name_plural = _('Ikea User groups')
+    
 class Ikea(User):
-    user_market = models.ForeignKey('Market',blank=True)
+    user_market = models.ForeignKey(IkeaMarkets,blank=True)
+    user_group = models.ForeignKey('IkeaGroups',blank=True)
     class Meta:
         verbose_name = _('Ikea User')
         verbose_name_plural = _('Ikea Users')

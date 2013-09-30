@@ -1,0 +1,74 @@
+{% extends "client/ikea/base_site.html" %}
+{% load i18n bootstrapped_goodies_tags %}
+{% load url from future %}
+
+{% block extrastyle %}
+<link  href="/static/base/css/jqGrid.bootstrap.css" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+	<div class="span10 right-view-wrp">
+					<div class="notifications top-center" id="alert-notification"></div>
+					<div class="well span8">
+							
+						<form class="form-signin form-horizontal" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+						  <div class="control-group">
+						  	<div class="controls">
+								{{saved}}
+							</div>
+						  </div>
+						  <div class="control-group">
+						    <div class="control-label">
+						        <label for="id_username" class="required">{% trans 'Username:' %}</label> 
+						    </div>
+						    <div class="controls">
+						        {{ form.username }}
+						        {% if not form.this_is_the_login_form.errors %}<span class="help-inline">{{ form.username.errors|striptags }}</span>{% endif %}
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <div class="control-label">
+						        <label for="id_first_name" class="required">{% trans 'First name:' %}</label> 
+						    </div>
+						    <div class="controls">
+						        {{ form.first_name }}
+						        {% if not form.this_is_the_login_form.errors %}<span class="help-inline">{{ form.first_name.errors|striptags }}</span>{% endif %}
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <div class="control-label">
+						        <label for="id_last_name" class="required">{% trans 'Last name:' %}</label> 
+						    </div>
+						    <div class="controls">
+						        {{ form.last_name }}
+						        {% if not form.this_is_the_login_form.errors %}<span class="help-inline">{{ form.last_name.errors|striptags }}</span>{% endif %}
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <div class="control-label">
+						        <label for="id_email" class="required">{% trans 'Email:' %}</label> 
+						    </div>
+						    <div class="controls">
+						        {{ form.email }}
+						        {% if not form.this_is_the_login_form.errors %}<span class="help-inline">{{ form.email.errors|striptags }}</span>{% endif %}
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <div class="control-label">
+						        <label for="id_password" class="required">{% trans 'Current password:' %}</label> 
+						    </div>
+						    <div class="controls">
+						        {{ form.password }}
+						        {% if not form.this_is_the_login_form.password %}<span class="help-inline">{{ form.password.errors|striptags }}</span>{% endif %}
+						    </div>
+						  </div>
+						  <div class="form-actions">
+						    <input type="submit" value="{% trans 'Save' %}" class="btn btn-primary pull-right" />
+						  </div>
+
+						</form>
+					</div>
+				</div>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
+

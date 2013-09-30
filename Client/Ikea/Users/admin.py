@@ -15,24 +15,41 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.contrib.auth.admin import UserAdmin
 from django import forms
-from Core.UserManagement.forms import (UserCreationForm, UserChangeForm,AdminPasswordChangeForm)
+from Client.Ikea.Users.forms import (UserCreationForm, UserChangeForm)
+from Core.UserManagement.forms import AdminPasswordChangeForm
 csrf_protect_m = method_decorator(csrf_protect)
 
-from Client.Ikea.Users.models import Market,Ikea
+from Client.Ikea.Users.models import Ikea,IkeaGroups
 
-class MarketAdmin(admin.ModelAdmin):
-    """A form for creating new users. Includes all the required
-    fields, plus a repeated password."""
-
-    class Meta:
-        model = Market
-
+class Group_ModulesToClient(forms.ModelForm):
+    from Core.Backend.Components.models import ModulesToClient
+    try:
+        modules = forms.ModelMultipleChoiceField(queryset= ModulesToClient.objects.filter(client__name='ikea')[0].modules.all())
+    except:
+        client_modules = (
+            (0, 'No module defined for client'),
+        )
+        modules  = forms.MultipleChoiceField(choices=client_modules,widget=forms.CheckboxSelectMultiple())
+        #modules = forms.ModelMultipleChoiceField(queryset= ModulesToClient.objects.filter(client__name="empty")[0].modules.all())
+        pass
+    def __init__(self, *args, **kwargs):
+        super(Group_ModulesToClient, self).__init__(*args, **kwargs)
     def save(self, commit=True):
-        # Save the provided password in hashed format
-        user = super(MarketAdmin, self).save(commit=False)
+        user = super(Group_ModulesToClient, self).save(commit=False)
         if commit:
             user.save()
         return user
+
+class IkeaGroupsAdmin(admin.ModelAdmin):
+    """A form for creating new users. Includes all the required
+    fields, plus a repeated password."""
+    client = 'ikea'
+
+    form = Group_ModulesToClient
+    class Meta:
+        model = IkeaGroups
+
+
 """
 class UsersAdmin(admin.ModelAdmin):
     class Meta:
@@ -58,14 +75,14 @@ class UsersAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
-        (_('Permissions'), {'fields': ('is_active' , 'user_type',
+        (_('Permissions'), {'fields': ('is_active' , 'user_type','user_group',
                                        )}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','first_name', 'last_name', 'email','password1', 'password2','user_type','is_active','user_market')}
+            'fields': ('username','user_group','first_name', 'last_name', 'email','password1', 'password2','user_type','is_active','user_market')}
         ),
     )
     form = UserChangeForm
@@ -187,5 +204,5 @@ class UsersAdmin(admin.ModelAdmin):
         return super(UsersAdmin, self).response_add(request, obj,
                                                    post_url_continue)
 
-admin.site.register(Market,MarketAdmin)
 admin.site.register(Ikea,UsersAdmin)
+admin.site.register(IkeaGroups,IkeaGroupsAdmin)

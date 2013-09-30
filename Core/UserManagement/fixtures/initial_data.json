@@ -1,0 +1,71 @@
+[
+    {
+        "pk": 1, 
+        "model": "UserManagement.UserType", 
+        "fields": {
+            "name": "Super administartor",
+            "friendly_name": "Global administrator"
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "UserManagement.UserType", 
+        "fields": {
+            "name": "Administartor",
+            "friendly_name": "Administrator"
+        }
+    },
+    {
+        "pk": 3, 
+        "model": "UserManagement.UserType", 
+        "fields": {
+            "name": "Local user",
+            "friendly_name": "Market / Advertiser"
+        }
+    },
+    {
+        "pk": 4, 
+        "model": "UserManagement.UserType", 
+        "fields": {
+            "name": "End user",
+            "friendly_name": "Consumers"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "UserManagement.UserStatus", 
+        "fields": {
+            "name": "active",
+            "friendly_name": "Active",
+            "allow_login":"True"
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "UserManagement.UserStatus", 
+        "fields": {
+            "name": "disable",
+            "friendly_name": "Disabled",
+            "allow_login":"False"
+        }
+    },
+    {
+        "pk": 3, 
+        "model": "UserManagement.UserStatus", 
+        "fields": {
+            "name": "pending_approval",
+            "friendly_name": "Pending approval",
+            "allow_login":"False"
+        }
+    },
+    {
+        "pk": 4, 
+        "model": "UserManagement.UserStatus", 
+        "fields": {
+            "name": "pending_activation",
+            "friendly_name": "Pending activation",
+            "allow_login":"False"
+        }
+    }
+]
+    

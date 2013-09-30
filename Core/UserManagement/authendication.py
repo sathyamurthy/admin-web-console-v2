@@ -1,12 +1,13 @@
 from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
-from UserManagement import get_user
+from Core.UserManagement import get_user
 class CheckForAuthentication(Authentication):
     def is_authenticated(self, request, **kwargs):
         user = get_user(request)
-        if user.is_active:
-          return True
-        return False
+        if isinstance(user.is_active, dict):
+            return user.is_active['allow_login']
+        else:
+            return user.is_active.allow_login 
 
     # Optional but recommended
     def get_identifier(self, request):

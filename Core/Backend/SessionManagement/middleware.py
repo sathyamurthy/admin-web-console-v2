@@ -17,10 +17,10 @@ class SessionExpiredMiddleware:
             # Do logout / expire session
             # and then...
             from Core.UserManagement import logout
-            from Core.Backend.PrivilegeManagement.sites import get_country_from_url
+            from Core.Backend.PrivilegeManagement.sites import get_client_from_url
             logout(request)
             request.session['last_activity'] = now
-            return HttpResponseRedirect("/%s/" %get_country_from_url(request.get_full_path()))
+            return HttpResponseRedirect("/%s/" %get_client_from_url(request.get_full_path()))
 
         if not request.is_ajax():
             # don't set this for ajax requests or else your

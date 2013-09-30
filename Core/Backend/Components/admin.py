@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.conf import settings
 from django.contrib import admin
-from Core.Backend.Components.models import UserModules,UserActions,UserPrivileges,ModulesGroup,ModuleToClient
+from Core.Backend.Components.models import UserModules,UserActions,UserPrivileges,ModulesGroup,ModulesToClient
 
 
 class ModulesGroupAdmin(admin.ModelAdmin):
@@ -34,16 +34,16 @@ class UserModulesAdmin(admin.ModelAdmin):
             user.save()
         return user
 
-class ModuleToClientAdmin(admin.ModelAdmin):
+class ModulesToClientAdmin(admin.ModelAdmin):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
 
     class Meta:
-        model = ModuleToClient
+        model = ModulesToClient
 
     def save(self, commit=True):
         # Save the provided password in hashed format
-        user = super(ModuleToClientAdmin, self).save(commit=False)
+        user = super(ModulesToClientAdmin, self).save(commit=False)
         if commit:
             user.save()
         return user
@@ -84,4 +84,4 @@ admin.site.register(UserModules,UserModulesAdmin)
 admin.site.register(UserActions,UserActionsAdmin)
 admin.site.register(UserPrivileges,UserPrivilegesAdmin)
 admin.site.register(ModulesGroup,ModulesGroupAdmin)
-admin.site.register(ModuleToClient,ModuleToClientAdmin)
+admin.site.register(ModulesToClient,ModulesToClientAdmin)

@@ -1,0 +1,38 @@
+{% extends "client/ikea/base.html" %}
+
+{% load i18n %}{% load admin_static bootstrapped_goodies_tags %}{% load url from future %}
+
+{% block title %}Ikea catalog Administartion{% endblock %}
+
+{% block actionbar_content %}
+		<div id="action-bar" class="container-fluid">
+			<div class="row-fluid">
+				<div class="span6">
+					<h1>Users / All (16.228)</h1>
+				</div>
+				<div class="span4 offset2 visible-desktop">
+					<ul class="pull-right  action-nav">
+						{% if modules.users_create %}
+							<li class="btn-green">
+								<a href="{{modules.users_create.opt.0 }}"><i class="icon-white icon-plus"></i> New User </a>
+							</li>
+						{% endif %}
+						{% if modules.groups_create %}
+							<li class="btn-green">
+								<a href="{{modules.groups_create.opt.0 }}"><i class="icon-white icon-plus"></i> New Group </a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block left_content %}
+	{% render_with_template_if_exist "client/ikea/users/left_content.html" "" %}
+{% endblock %}
+{% block search_box %}
+	<form class="navbar-form pull-left">
+		<input type="text" placeholder="Search users"/>
+	</form>
+{% endblock %}
+{% block nav-global %}{% endblock %}
